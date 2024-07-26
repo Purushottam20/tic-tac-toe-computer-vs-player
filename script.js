@@ -31,7 +31,7 @@ const resetGame = () => {
     isGameOver = false;
     msgContainer.classList.add("hide");
 };
-
+let player = "X";
 xBtn.addEventListener("click", () => {
     turnX = true;
     xBtn.style.backgroundColor = "black";
@@ -39,6 +39,7 @@ xBtn.addEventListener("click", () => {
     xBtn.disabled = true;
     oBtn.disabled = true;
     enableBoxes();
+    player = "X";
 });
 
 oBtn.addEventListener("click", () => {
@@ -48,6 +49,7 @@ oBtn.addEventListener("click", () => {
     oBtn.disabled = true;
     xBtn.disabled = true;
     enableBoxes();
+    player = "O";
 });
 console.log(boxes);
 boxes.forEach((box) => {
@@ -64,9 +66,9 @@ boxes.forEach((box) => {
             box.style.backgroundColor = "black"
         }
         box.disabled = true;
-        compMoves();
         checkWinner();
         checkDraw();
+        compMoves();
     })
 });
 
@@ -106,6 +108,8 @@ const compMoves = () => {
 
         }
         boxes[m].disabled = true;
+        checkWinner();
+        checkDraw();
     }
 }
 
@@ -125,8 +129,15 @@ const enableBoxes = () => {
 let isGameOver = false;
 const showWinner = (winner) => {
     isGameOver = true;
-    msg.innerText = `Congratulation, Winner is ${winner}`;
-    msgContainer.classList.remove("hide");
+    console.log(player);
+    if (player === winner) {
+        msg.innerText = `Congratulation, Winner is ${winner}`;
+        msgContainer.classList.remove("hide");
+    }
+    else {
+        msg.innerText = `Better Luck Next Time`;
+        msgContainer.classList.remove("hide");
+    }
     disableBoxes();
 };
 
