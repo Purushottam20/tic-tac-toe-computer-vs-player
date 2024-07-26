@@ -131,7 +131,7 @@ const showWinner = (winner) => {
     isGameOver = true;
     console.log(player);
     if (player === winner) {
-        msg.innerText = `Congratulation, Winner is ${winner}`;
+        msg.innerText = `Congratulation, You Won`;
         msgContainer.classList.remove("hide");
     }
     else {
